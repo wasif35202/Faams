@@ -17,7 +17,9 @@ import Contact from './Contact.jsx'
 
 import { Outlet, useLocation } from 'react-router-dom';
 import columns from '../Context/Context.js'
-import SingleProductPage from '../SingleProductPage.jsx'
+import SignIn from './SignIn.jsx'
+import Signup from './Signup.jsx'
+
 
 const HomePage = () => {
   const location = useLocation();
@@ -48,6 +50,9 @@ const HomePage = () => {
         {(location.pathname == '/testimonials') ? <Testimonial /> : ""}
 
         {(location.pathname == '/testimonials') || (location.pathname == '/') ? <TestimonialSlider /> : ""}
+
+        {(location.pathname == '/signup') ? <Signup /> : ""}
+        {(location.pathname == '/signin') ? <SignIn/> : ""}
         
        <Outlet/>
 

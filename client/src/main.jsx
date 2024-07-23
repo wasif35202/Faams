@@ -5,6 +5,9 @@ import './index.css'
 import HomePage from './components/Pages/HomePage'
 
 import SingleProductPage from './components/SingleProductPage'
+import Signup from './components/Pages/Signup'
+import SignIn from './components/Pages/SignIn'
+
 
 
 
@@ -54,6 +57,20 @@ const router = createBrowserRouter([
     path: "/testimonials",
     element: <HomePage />,
   },
+
+  {
+    path: "/signup",
+    element: <HomePage />,
+  },
+  {
+    path: "/signin",
+    element: <HomePage />,
+  },
+
+  {
+    path: "/login",
+    element: <HomePage />,
+  }
 
 
 

@@ -1,10 +1,33 @@
-import React, { useContext } from "react";
-import Prod from "./Json/ProductList.jsx";
+import React, { useContext, useState, useEffect } from "react";
+
+
 import columns from "./Context/Context.js";
-import { Link } from "react-router-dom";
+
+import ProductCard from "./ProductCard.jsx";
+
+import axios from 'axios'
 
 const Products = () => {
     const Columns = useContext(columns);
+    const [Prod, setProd] = useState([])
+
+    useEffect(
+        () => { fetchAllProducts() },
+        []
+    )
+    const fetchAllProducts = async () => {
+        try {
+            const {data}  = await axios.get("http://localhost:8080/products/")
+          
+            setProd(data)
+            console.log(data)
+           
+        } catch (error) {
+            console.log(error.message)
+
+        }
+    }
+
 
     return (
         <div
@@ -13,24 +36,11 @@ const Products = () => {
             <div className="col-span-full flex justify-center">
                 <p className="text-[50px] font-bold text-red-500">Our Products</p>
             </div>
+            {Prod.map(ProD=> <ProductCard Prodd={ProD} />)}
 
-            {Prod.map((P) => (
-                <Link to={`/products/singleProduct/${P.id}`} className="">
-                    <div className="rounded-[25px] bg-gray-200 p-5 hover:bg-yellow-50">
-                        <div className="flex w-full items-center justify-center px-20 sm:px-5 md:px-10 lg:px-20">
-                            <img
-                                className="h-[255px] w-full"
-                                src={require(`../images/${P.image}`).default}
-                                alt=""
-                            />
-                        </div>
-                        <div className="flex w-full items-center justify-between p-5">
-                            <p className="text-lg font-bold">{P.title}</p>{" "}
-                            <p className="text-lg font-bold">{P.price}</p>
-                        </div>
-                    </div>
-                </Link>
-            ))}
+       
+
+
         </div>
     );
 };

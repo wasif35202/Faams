@@ -6,6 +6,8 @@ productRoute.route('/').get(prod.fetchAllProducts);
 
 productRoute.route('/').post(prod.addNewProducts);
 
+productRoute.route('/:id').get(prod.fetchSingleProduct);
+
 export default productRoute;
 
 

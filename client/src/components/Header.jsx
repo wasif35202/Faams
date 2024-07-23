@@ -9,6 +9,8 @@ import {
   IoIosArrowDropupCircle,
 } from "react-icons/io";
 import { Link } from "react-router-dom";
+import SignIn from "./Pages/SignIn";
+import Signup from "./Pages/Signup";
 
 const Header = () => {
   const [Open, setOpen] = useState(false);
@@ -68,6 +70,12 @@ const Header = () => {
           </Link>
           <Link to={""} className="">
             <FaShoppingCart />
+          </Link>
+          <Link to={"/signup"} className="">
+            Sign Up
+          </Link>
+          <Link to={"/signin"} className="">
+            Sign In
           </Link>
         </div>
 
