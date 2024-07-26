@@ -2,9 +2,11 @@ import Products from "../models/products.js";
 import asyncHandler from "express-async-handler"
 
 export const fetchAllProducts = asyncHandler(async (req, res) => {
-    const products = await Products.find({});
+    const products = await Products.find();
     if (products)
-        res.json(products)
+        res.json({products})
+    
+        
 
 
     else {
@@ -14,6 +16,7 @@ export const fetchAllProducts = asyncHandler(async (req, res) => {
 
 
     }
+   
 })
 
 

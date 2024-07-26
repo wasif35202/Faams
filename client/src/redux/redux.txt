@@ -1,0 +1,54 @@
+
+hooks 
+
+
+
+npm i @reduxjs/toolkit 
+
+npm i react-redux 
+
+context API  easy useContext
+
+
+redux toolkit  - 5 
+
+   store.js 
+
+   /slices  -  reducers + state    current state  null payload 
+       products  
+          teller - action - data 
+       users 
+       orders state 
+       trick
+       admin 
+       payments
+
+   /actions  - payload  custom  - 
+
+       products  API 
+       users
+
+       API call -     compoment   api back-end 
+
+
+
+ store  . app.js -  main.js 
+
+ Bank     ----
+ teller + money 
+ reducer+state 
+
+
+ dispatch(setLoading) 
+
+
+
+redux   10 lines 
+
+    redux 
+
+    /reducers 
+    /actions
+    /constants
+
+    store  

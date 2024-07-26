@@ -1,32 +1,22 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
-
+import { fetchAllProducts, } from '../redux/actions/productActions.js';
 import columns from "./Context/Context.js";
-
+import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from "./ProductCard.jsx";
 
-import axios from 'axios'
 
 const Products = () => {
     const Columns = useContext(columns);
-    const [Prod, setProd] = useState([])
+    const dispatch = useDispatch();
+    const { productsList } = useSelector((state) => state.productSlice)
 
-    useEffect(
-        () => { fetchAllProducts() },
-        []
-    )
-    const fetchAllProducts = async () => {
-        try {
-            const {data}  = await axios.get("http://localhost:8080/products/")
-          
-            setProd(data)
-            console.log(data)
-           
-        } catch (error) {
-            console.log(error.message)
+    useEffect(() => {
+        dispatch(fetchAllProducts())
 
-        }
-    }
+    }, [dispatch]);
+
+
 
 
     return (
@@ -36,9 +26,9 @@ const Products = () => {
             <div className="col-span-full flex justify-center">
                 <p className="text-[50px] font-bold text-red-500">Our Products</p>
             </div>
-            {Prod.map(ProD=> <ProductCard Prodd={ProD} />)}
+            {productsList.map((ProD, index) => <ProductCard key={index} Prodd={ProD} />)}
 
-       
+
 
 
         </div>
