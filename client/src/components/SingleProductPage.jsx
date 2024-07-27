@@ -1,35 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
-import axios from 'axios'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProduct } from '../redux/actions/productActions'
 
 
 
 const SingleProductPage = () => {
-  const params = useParams()
+  const {id} = useParams()
+  const dispatch = useDispatch()
+  const {singleProduct} = useSelector((state) => state.productSlice)
 
-  const [sProd, setsProd] = useState([])
 
+ 
   useEffect(
-    () => { fetchSingleProducts() },
-    []
+    () => { dispatch(fetchProduct(id)) },
+    [dispatch]
   )
-  const fetchSingleProducts = async () => {
-    try {
-      const { data } = await axios.get(`http://localhost:8080/products/${params.id}`)
-
-      setsProd(data)
-
-
-    } catch (error) {
-      console.log(error.message)
-
-    }
-  }
-
-
-
+  
   return (
     <>
       <div className=" bg-gray-200 p-5 w-full flex gap-3 justify-evenly">
@@ -51,8 +38,8 @@ const SingleProductPage = () => {
       </div>
       <div className="w-full flex justify-evenly p-5 gap-2 ">
         <div className='w-1/2 rounded-md bg-gray-200 p-3'>
-          <p className="text-lg font-bold">{sProd.title}</p>{" "}
-          <p className="text-lg font-bold">{sProd.price}</p>
+          <p className="text-lg font-bold">{singleProduct.title}</p>{" "}
+          <p className="text-lg font-bold">{singleProduct.price}</p>
         </div>
         <div className='w-1/2 rounded-md bg-gray-200 flex flex-col items-center justify-evenly p-3'>
           <button className='bg-black text-white w-[100px] rounded-md'>Buy Now</button>
